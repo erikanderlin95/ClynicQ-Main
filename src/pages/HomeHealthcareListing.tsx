@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Phone, MessageCircle, Stethoscope, HeartHandshake } from "lucide-react";
+import { Calendar, Phone, MessageCircle, Stethoscope, HeartHandshake } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -14,9 +13,6 @@ export default function HomeHealthcareListing({ kind }: { kind: HomeHealthcareKi
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="container max-w-5xl px-4 md:px-6 py-4 md:py-8">
-        <Button asChild variant="link" className="px-0 h-auto mb-4 whitespace-normal text-left">
-          <Link to="/"><ArrowLeft aria-hidden="true" />{t("homeHealth.back")}</Link>
-        </Button>
         <header className="mb-5">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-snug">{t(`homeHealth.${kind}.page`)}</h1>
           <p className="mt-1 text-sm md:text-base text-muted-foreground">{t(`homeHealth.${kind}.description`)}</p>
