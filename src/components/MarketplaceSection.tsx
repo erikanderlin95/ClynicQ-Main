@@ -8,8 +8,9 @@ import { clinicClosingStatus } from "@/lib/clinicStatus";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
-import { Link, useLocation, useNavigationType } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocation, useNavigationType } from "react-router-dom";
+import { HealthcareAtHome } from "./HealthcareAtHome";
 
 
 const CLINICS_PER_PAGE_MOBILE = 6;
@@ -455,36 +456,7 @@ export const MarketplaceSection = ({ defaultCategory = "all", title, subtitle }:
             );
           })()}
 
-          {/* 24hr Clinics — compact entry card */}
-          {activeCategory === "all" && (
-            <div className="pt-2 mt-2">
-              <Link
-                to="/24-hour-clinics-singapore"
-                className="group block w-full max-w-[560px] mx-auto rounded-lg border border-border/80 bg-muted/30 hover:bg-muted/50 hover:border-border transition-colors px-4 py-3"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary">
-                    <Clock className="h-4.5 w-4.5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight">
-                      24-Hour Clinics in Singapore
-                    </h3>
-                    <p className="text-xs sm:text-sm text-foreground/80 leading-snug">
-                      Find clinics open around the clock and get directions.
-                    </p>
-                  </div>
-                  <span className="shrink-0 inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-primary">
-                    View Clinics
-                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-              <p className="mt-2 text-center text-[11px] sm:text-xs text-foreground/70">
-                Operating hours may change. Please confirm with the clinic before visiting.
-              </p>
-            </div>
-          )}
+          {activeCategory === "all" && <HealthcareAtHome />}
 
         </div>
       </div>

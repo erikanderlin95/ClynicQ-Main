@@ -47,6 +47,7 @@ const MyClynicQPage = lazy(() => import("./pages/MyClynicQPage"));
 const HoviCare = lazy(() => import("./pages/HoviCare"));
 const About = lazy(() => import("./pages/About"));
 const TwentyFourHourClinics = lazy(() => import("./pages/TwentyFourHourClinics"));
+const HomeHealthcareListing = lazy(() => import("./pages/HomeHealthcareListing"));
 
 import { SectionSidebar } from "@/components/SectionSidebar";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -104,6 +105,8 @@ const App = () => (
             <Route path="/myclynicq" element={<MyClynicQPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/24-hour-clinics-singapore" element={<TwentyFourHourClinics />} />
+            <Route path="/house-call-doctors" element={<HomeHealthcareListing kind="doctor" />} />
+            <Route path="/home-care" element={<HomeHealthcareListing kind="care" />} />
 
             <Route path="/blog/eye-health-guide-dr-philemon-huang" element={<BlogEyecare />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />

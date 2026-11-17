@@ -1,5 +1,10 @@
 # ClynicQ roadmap
 
+## Healthcare at Home
+- [x] Replace only the 24-hour entry section with two home healthcare cards.
+- [x] Add house-call and home-care listing pages with labelled placeholders and expandable provider data.
+- [x] Verify both cards and pages on mobile and desktop, including four languages.
+
 ## Subheader size and Nirvana card layout
 - [x] Make the Browse Clinics subheader a bit bigger while keeping it on one row in all four languages.
 - [x] Give the Nirvana card the same layout as the other Afterlife cards, logo on the left and slightly bigger.
