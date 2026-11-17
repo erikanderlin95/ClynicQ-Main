@@ -32,12 +32,14 @@ const Index = () => {
         <section className="container px-4 md:px-6 py-6 md:py-8">
           <div className="flex justify-center">
             <Button
-              className="explore-cta group h-10 w-48 justify-center gap-2 rounded-lg bg-primary/90 hover:bg-primary hover:-translate-y-0.5 text-sm font-semibold tracking-wide shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.18)] transition-all duration-300 active:scale-[0.97]"
+              className="explore-cta group h-10 w-48 justify-center gap-2 rounded-lg bg-primary hover:bg-primary/95 text-sm font-semibold tracking-wide transition-colors duration-200"
               onClick={() => window.dispatchEvent(new Event("open-explore-sidebar"))}
             >
               <Compass className="h-4 w-4 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
               {t("explore.more.title")}
-              <ChevronRight className="h-4 w-4 shrink-0" />
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/25">
+                <ChevronRight className="h-3.5 w-3.5" />
+              </span>
             </Button>
           </div>
         </section>
