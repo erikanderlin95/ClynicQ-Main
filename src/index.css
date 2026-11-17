@@ -221,3 +221,25 @@ All colors MUST be HSL.
     font-size: 1.25rem;
   }
 }
+
+/* Gentle attention pulse for primary "Explore" call-to-action buttons so they
+   read as tappable without changing layout or branding. */
+@keyframes explore-cta-pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 0 hsl(var(--primary) / 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), 0 0 0 7px hsl(var(--primary) / 0);
+  }
+}
+
+.explore-cta {
+  animation: explore-cta-pulse 2.4s ease-in-out infinite;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explore-cta {
+    animation: none;
+  }
+}
