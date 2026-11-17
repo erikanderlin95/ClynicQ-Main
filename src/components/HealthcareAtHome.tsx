@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { HOME_HEALTHCARE_ROUTES, type HomeHealthcareKind } from "@/data/homeHealthcare";
@@ -30,7 +29,7 @@ export function HealthcareAtHome() {
                 <h3 className="text-sm md:text-lg font-semibold leading-snug">{t(`homeHealth.${kind}.title`)}</h3>
                 <p className="mt-0.5 text-xs md:text-sm text-muted-foreground font-normal">{t(`homeHealth.${kind}.description`)}</p>
                 <span className={`mt-2 inline-flex min-h-8 self-start items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold md:mt-3 md:min-h-10 md:gap-2 md:px-4 md:py-2 md:text-sm ${buttonStyles[kind]}`}>
-                  {t(`homeHealth.${kind}.cta`)}<ArrowRight className="h-3.5 w-3.5 md:h-4 md:w-4 shrink-0" aria-hidden="true" />
+                  {t(`homeHealth.${kind}.cta`)}
                 </span>
               </div>
             </Link>
