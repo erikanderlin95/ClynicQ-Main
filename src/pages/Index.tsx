@@ -37,7 +37,7 @@ const Index = () => {
             >
               <Compass className="h-4 w-4 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
               {t("explore.more.title")}
-              <ChevronRight className="explore-cta-chevron h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="h-4 w-4 shrink-0" />
             </Button>
           </div>
         </section>

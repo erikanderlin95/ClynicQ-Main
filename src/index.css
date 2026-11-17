@@ -222,59 +222,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Gentle attention pulse for primary "Explore" call-to-action buttons so they
-   read as tappable without changing layout or branding. */
-@keyframes explore-cta-pulse {
-  0%, 100% {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 0 hsl(var(--primary) / 0.35);
-  }
-  50% {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), 0 0 0 7px hsl(var(--primary) / 0);
-  }
-}
-
-/* Periodic sideways nudge so the button reads as an interactive tap target,
-   not just a glowing panel. */
-@keyframes explore-cta-nudge {
-  0%, 62%, 100% {
-    transform: translateX(0);
-  }
-  68% {
-    transform: translateX(3px);
-  }
-  74% {
-    transform: translateX(-2px);
-  }
-  80% {
-    transform: translateX(1px);
-  }
-}
-
-/* Bouncing trailing arrow pointing at the action. */
-@keyframes explore-cta-chevron {
-  0%, 100% {
-    transform: translateX(0);
-    opacity: 0.85;
-  }
-  50% {
-    transform: translateX(4px);
-    opacity: 1;
-  }
-}
-
+/* Static, clearly tappable Explore call-to-action buttons — no motion. */
 .explore-cta {
-  animation: explore-cta-pulse 2.4s ease-in-out infinite,
-    explore-cta-nudge 3.6s ease-in-out infinite;
   cursor: pointer;
-}
-
-.explore-cta-chevron {
-  animation: explore-cta-chevron 1.2s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .explore-cta,
-  .explore-cta-chevron {
-    animation: none;
-  }
 }

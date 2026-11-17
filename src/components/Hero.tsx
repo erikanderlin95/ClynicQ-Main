@@ -72,7 +72,7 @@ export const Hero = () => {
             >
               <Compass className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
               <span className="min-w-0 break-words">{t("sidebar.explore")}</span>
-              <ChevronRight className="explore-cta-chevron h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="h-4 w-4 shrink-0" />
             </Button>
           </div>
         </div>
