@@ -60,6 +60,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        home: {
+          doctor: {
+            DEFAULT: "hsl(var(--home-doctor))",
+            foreground: "hsl(var(--home-doctor-foreground))",
+          },
+          care: {
+            DEFAULT: "hsl(var(--home-care))",
+            foreground: "hsl(var(--home-care-foreground))",
+          },
+        },
         ai: {
           purple: "hsl(var(--ai-purple))",
           "purple-light": "hsl(var(--ai-purple-light))",

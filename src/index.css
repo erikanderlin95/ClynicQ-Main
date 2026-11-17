@@ -39,6 +39,11 @@ All colors MUST be HSL.
     --social-instagram: 337 79% 57%;
     --social-youtube: 0 100% 50%;
 
+    --home-doctor: 217 91% 60%;
+    --home-doctor-foreground: 0 0% 100%;
+    --home-care: 122 39% 49%;
+    --home-care-foreground: 0 0% 100%;
+
     --radius: 0.75rem;
     
     /* AI-themed colors */
@@ -100,6 +105,11 @@ All colors MUST be HSL.
 
     --accent: 158 70% 55%;
     --accent-foreground: 215 30% 8%;
+
+    --home-doctor: 217 91% 65%;
+    --home-doctor-foreground: 215 30% 8%;
+    --home-care: 122 39% 55%;
+    --home-care-foreground: 215 30% 8%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
