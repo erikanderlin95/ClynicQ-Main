@@ -24,8 +24,8 @@ export function HealthcareAtHome() {
               <div className="flex-1 min-w-0 p-2.5 md:p-4 text-left">
                 <h3 className="text-sm md:text-lg font-semibold leading-snug">{t(`homeHealth.${kind}.title`)}</h3>
                 <p className="mt-0.5 text-xs md:text-sm text-muted-foreground font-normal">{t(`homeHealth.${kind}.description`)}</p>
-                <span className="mt-1 inline-flex min-h-11 items-center justify-start gap-1.5 text-sm font-semibold text-primary md:mt-2">
-                  {t(`homeHealth.${kind}.cta`)}<ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="mt-2 inline-flex min-h-8 items-center justify-center gap-1.5 rounded-md bg-primary text-primary-foreground px-3 py-1.5 text-xs font-semibold group-hover:bg-primary/90 md:mt-3 md:min-h-10 md:gap-2 md:px-4 md:py-2 md:text-sm">
+                  {t(`homeHealth.${kind}.cta`)}<ArrowRight className="h-3.5 w-3.5 md:h-4 md:w-4 shrink-0" aria-hidden="true" />
                 </span>
               </div>
             </Link>
