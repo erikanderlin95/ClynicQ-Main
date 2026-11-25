@@ -43,10 +43,10 @@ export function KidneyLifeHouseCall() {
           <img src={photo.url} alt={t("kidneyLife.photoAlt")} className="h-12 w-12 shrink-0 rounded-full object-cover border-2 border-home-kidney/40" loading="lazy" />
           <div className="min-w-0">
             <h2 className="text-base font-semibold leading-tight">{t("kidneyLife.doctor")}</h2>
-            <p className="text-sm text-home-kidney font-medium leading-snug">{t("kidneyLife.clinic")}</p>
+            <p className="text-sm text-foreground font-medium leading-snug">{t("kidneyLife.clinic")}</p>
           </div>
         </div>
-        <ul className="mt-2 space-y-0.5 text-[13px] leading-snug text-muted-foreground">
+        <ul className="mt-2 space-y-0.5 text-[13px] leading-snug text-foreground">
           <li className="flex gap-2"><Stethoscope className="h-4 w-4 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" />{t("kidneyLife.service")}</li>
           <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" />{t("kidneyLife.coverage")}</li>
           <li className="flex gap-2"><Clock className="h-4 w-4 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" />{t("kidneyLife.availability")}</li>
