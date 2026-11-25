@@ -36,26 +36,26 @@ export function KidneyLifeHouseCall() {
   };
 
   return (
-    <article className="overflow-hidden rounded-xl border border-home-kidney/30 bg-card text-card-foreground md:col-span-2">
-      <img src={logo.url} alt={t("kidneyLife.logoAlt")} className="h-14 w-full object-contain bg-home-kidney px-3 py-1.5" loading="lazy" />
-      <div className="p-3 md:p-4">
-        <div className="flex items-center gap-3">
-          <img src={photo.url} alt={t("kidneyLife.photoAlt")} className="h-16 w-16 shrink-0 rounded-full object-cover border-2 border-home-kidney/40" loading="lazy" />
+    <article className="overflow-hidden rounded-xl border border-home-kidney/30 bg-card text-card-foreground md:col-span-2 md:max-w-xl">
+      <img src={logo.url} alt={t("kidneyLife.logoAlt")} className="h-10 w-full object-contain bg-home-kidney px-3 py-1" loading="lazy" />
+      <div className="p-2.5 md:p-3">
+        <div className="flex items-center gap-2.5">
+          <img src={photo.url} alt={t("kidneyLife.photoAlt")} className="h-12 w-12 shrink-0 rounded-full object-cover border-2 border-home-kidney/40" loading="lazy" />
           <div className="min-w-0">
             <h2 className="text-base font-semibold leading-tight">{t("kidneyLife.doctor")}</h2>
             <p className="text-sm text-home-kidney font-medium leading-snug">{t("kidneyLife.clinic")}</p>
           </div>
         </div>
-        <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+        <ul className="mt-2 space-y-0.5 text-[13px] leading-snug text-muted-foreground">
           <li className="flex gap-2"><Stethoscope className="h-4 w-4 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" />{t("kidneyLife.service")}</li>
           <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" />{t("kidneyLife.coverage")}</li>
           <li className="flex gap-2"><Clock className="h-4 w-4 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" />{t("kidneyLife.availability")}</li>
         </ul>
-        <div className="mt-3 rounded-lg border border-home-kidney/25 bg-home-kidney-soft p-2.5 text-xs leading-relaxed text-foreground">
+        <div className="mt-2 rounded-lg border border-home-kidney/25 bg-home-kidney-soft p-2 text-[11px] leading-snug text-foreground">
           <p className="flex gap-1.5"><Info className="h-3.5 w-3.5 mt-0.5 shrink-0 text-home-kidney" aria-hidden="true" /><span>{t("kidneyLife.disclaimer")}</span></p>
-          <p className="mt-1.5 pl-5 text-muted-foreground">{t("kidneyLife.enrolment")}</p>
+          <p className="mt-1 pl-5 text-muted-foreground">{t("kidneyLife.enrolment")}</p>
         </div>
-        <Button onClick={() => { reset(); setOpen(true); }} className="mt-3 w-full h-10 bg-home-kidney text-home-kidney-foreground hover:bg-home-kidney/90 font-semibold">
+        <Button onClick={() => { reset(); setOpen(true); }} className="mt-2 w-full h-9 bg-home-kidney text-home-kidney-foreground hover:bg-home-kidney/90 font-semibold">
           {t("kidneyLife.request")}
         </Button>
       </div>
