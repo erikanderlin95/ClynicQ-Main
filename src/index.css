@@ -43,6 +43,9 @@ All colors MUST be HSL.
     --home-doctor-foreground: 0 0% 100%;
     --home-care: 122 39% 49%;
     --home-care-foreground: 0 0% 100%;
+    --kidney: 345 71% 25%;
+    --kidney-foreground: 0 0% 100%;
+    --kidney-soft: 345 60% 96%;
 
     --radius: 0.75rem;
     
@@ -110,6 +113,9 @@ All colors MUST be HSL.
     --home-doctor-foreground: 215 30% 8%;
     --home-care: 122 39% 55%;
     --home-care-foreground: 215 30% 8%;
+    --kidney: 345 55% 45%;
+    --kidney-foreground: 0 0% 100%;
+    --kidney-soft: 345 30% 15%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;

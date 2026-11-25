@@ -69,6 +69,7 @@ export default {
             DEFAULT: "hsl(var(--home-care))",
             foreground: "hsl(var(--home-care-foreground))",
           },
+          kidney: { DEFAULT: "hsl(var(--kidney))", foreground: "hsl(var(--kidney-foreground))", soft: "hsl(var(--kidney-soft))" },
         },
         ai: {
           purple: "hsl(var(--ai-purple))",

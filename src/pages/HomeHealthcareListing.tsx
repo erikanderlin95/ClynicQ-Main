@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { HOME_HEALTHCARE_PROVIDERS, providerContacts, type HomeHealthcareKind } from "@/data/homeHealthcare";
 import "@/content/homeHealthcareTranslations";
+import { KidneyLifeHouseCall } from "@/components/KidneyLifeHouseCall";
 
 export default function HomeHealthcareListing({ kind }: { kind: HomeHealthcareKind }) {
   const { t } = useLanguage();
@@ -19,6 +20,7 @@ export default function HomeHealthcareListing({ kind }: { kind: HomeHealthcareKi
         </header>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {HOME_HEALTHCARE_PROVIDERS[kind].map(provider => {
+            if (provider.houseCallIntake) return <KidneyLifeHouseCall key={provider.id} />;
             const contacts = providerContacts(provider);
             const fields = [
               ["homeHealth.services", provider.serviceKeys?.map(key => t(key)).join(" · ")],
