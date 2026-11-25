@@ -37,7 +37,7 @@ export function KidneyLifeHouseCall() {
 
   return (
     <article className="overflow-hidden rounded-xl border border-home-kidney/30 bg-card text-card-foreground md:col-span-2 md:max-w-xl">
-      <img src={logo.url} alt={t("kidneyLife.logoAlt")} className="h-10 w-full object-contain bg-home-kidney px-3 py-1" loading="lazy" />
+      <img src={logo.url} alt={t("kidneyLife.logoAlt")} className="h-16 w-full object-contain bg-home-kidney px-2 py-0" loading="lazy" />
       <div className="p-2.5 md:p-3">
         <div className="flex items-center gap-2.5">
           <img src={photo.url} alt={t("kidneyLife.photoAlt")} className="h-12 w-12 shrink-0 rounded-full object-cover border-2 border-home-kidney/40" loading="lazy" />
