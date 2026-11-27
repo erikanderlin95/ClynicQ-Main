@@ -54,3 +54,4 @@ UAT should verify:
 5. The count survives a day boundary and clinic removal.
 6. Removing the endpoint or returning invalid JSON hides the public counter without showing a mock number.
 7. API responses and browser rendering expose no patient-identifiable information.
+8. The public "Since September 2026" line (`queueJoinCounter.since`) still matches the earliest successful join actually included in the aggregate. If the counted history starts earlier or later, update that label in all four languages in `src/content/queueJoinCounterTranslations.ts` — the label is display text only and is not derived from the API response.

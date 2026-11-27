@@ -9,7 +9,7 @@ export const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden bg-white py-8 md:py-12">
+    <section className="relative flex items-center justify-center overflow-hidden bg-white py-5 md:py-9">
       <div className="absolute inset-0 bg-[linear-gradient(105deg,hsl(168,55%,84%)_0%,hsl(175,55%,92%)_22%,hsl(190,50%,97%)_50%,hsl(200,60%,94%)_78%,hsl(210,65%,86%)_100%)]" />
       <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 700" aria-hidden="true">
         <defs>
@@ -33,7 +33,7 @@ export const Hero = () => {
       </svg>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,hsl(0,0%,100%,0.55),transparent_75%)]" />
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="mx-auto flex max-w-4xl flex-col items-center space-y-4 text-center md:space-y-5">
+        <div className="mx-auto flex max-w-4xl flex-col items-center space-y-2.5 text-center md:space-y-4">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
               {t("hero.title1")}
@@ -41,24 +41,14 @@ export const Hero = () => {
                 {t("hero.title2")}
               </span>
             </h1>
-            {(() => {
-              const [line1, line2] = t("hero.subtitle").split("\n");
-              return (
-                <div className="space-y-1 pt-1">
-                  <p className="text-sm leading-snug text-foreground/80 sm:text-base md:text-lg">
-                    {line1}
-                  </p>
-                  <p className="whitespace-nowrap text-sm leading-snug text-foreground/80 sm:text-base md:text-lg">
-                    {line2 || ""}
-                  </p>
-                </div>
-              );
-            })()}
+            <p className="mx-auto max-w-xl text-sm leading-snug text-foreground/80 sm:text-base md:text-lg">
+              {t("hero.subtitle")}
+            </p>
           </div>
 
           <QueueJoinCounter />
 
-          <div className="mx-auto flex flex-col justify-center gap-2.5 sm:flex-row sm:gap-3">
+          <div className="flex flex-col items-center gap-1.5 sm:gap-2">
             <Button
               size="lg"
               className="explore-cta group h-auto min-h-10 w-auto gap-1.5 px-5 py-2.5 text-sm font-bold leading-tight ring-2 ring-primary/40 ring-offset-2 ring-offset-transparent transition-colors duration-200 hover:bg-primary/95 sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
@@ -70,15 +60,15 @@ export const Hero = () => {
                 <ChevronRight className="h-3.5 w-3.5" />
               </span>
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="h-auto min-h-10 w-auto gap-1.5 border-primary px-5 py-2.5 text-sm font-bold leading-tight text-primary shadow-lg transition-all hover:scale-105 hover:bg-primary/5 hover:shadow-xl sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
+            <button
+              type="button"
               onClick={() => navigate('/for-clinics')}
+              className="group inline-flex items-center gap-1 text-xs font-semibold text-primary underline-offset-4 transition-colors hover:underline sm:text-sm"
             >
-              <Building2 className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
-              <span className="min-w-0 break-words">{t("hero.findMyQueue")}</span>
-            </Button>
+              <Building2 className="h-3.5 w-3.5 shrink-0 opacity-80" />
+              <span>{t("hero.findMyQueue")}</span>
+              <ChevronRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </button>
           </div>
         </div>
       </div>

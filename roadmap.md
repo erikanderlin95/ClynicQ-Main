@@ -1,5 +1,12 @@
 # ClynicQ roadmap
 
+## Less crowded mobile hero
+- [x] Replace the hero description with the approved single-line wording in all four languages.
+- [x] Keep the counter centred with the teal icon, add "Since September 2026", and keep the placeholder indicator development-only and clear of the count.
+- [x] Turn List Your Clinic into a small teal text link while both hero actions still work.
+- [x] Tighten hero spacing and set the Browse Clinics line to the approved wording, still one row on phones in all four languages.
+- [x] Flag the counter start date for developer verification during UAT.
+
 ## Premium hero refinement
 - [x] Integrate the counter directly into the hero with compact, centred, tabular-number styling.
 - [x] Put Explore Clinics above List Your Clinic while preserving both actions.
