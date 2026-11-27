@@ -1,5 +1,10 @@
 # ClynicQ roadmap
 
+## Premium hero refinement
+- [x] Integrate the counter directly into the hero with compact, centred, tabular-number styling.
+- [x] Put Explore Clinics above List Your Clinic while preserving both actions.
+- [x] Verify mobile and desktop spacing, development-only placeholder display, and existing counter tests.
+
 ## Cumulative queue join counter
 - [x] Add a compact four-language homepage counter below the hero description.
 - [x] Add the same shared count to the admin analytics dashboard.

@@ -43,27 +43,25 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
 
   return (
     <div
-      className="inline-flex max-w-full items-center gap-3 rounded-xl border border-primary/20 bg-background/80 px-4 py-2.5 text-left shadow-sm"
+      className="flex max-w-full flex-col items-center gap-1.5 text-center"
       data-testid="homepage-queue-join-counter"
       data-source={snapshot.isMock ? "preview-placeholder" : "live"}
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-        <UsersRound className="h-4 w-4" aria-hidden="true" />
-      </span>
-      <span className="min-w-0">
-        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <strong className="text-2xl font-bold leading-none text-primary" aria-live="polite">
+      <span className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+        <span className="flex items-center gap-2 text-primary">
+          <UsersRound className="h-5 w-5 shrink-0 opacity-75 sm:h-6 sm:w-6" aria-hidden="true" />
+          <strong className="text-3xl font-bold leading-none tracking-tight tabular-nums sm:text-4xl" aria-live="polite">
             {snapshot.count.toLocaleString(language)}
           </strong>
-          {snapshot.isMock && (
-            <Badge variant="outline" className="px-1.5 py-0 text-[9px] font-medium">
-              {t("queueJoinCounter.preview")}
-            </Badge>
-          )}
         </span>
-        <span className="mt-1 block text-xs font-medium leading-snug text-foreground/75">
-          {t("queueJoinCounter.label")}
-        </span>
+        {import.meta.env.DEV && snapshot.isMock && (
+          <Badge variant="outline" className="px-1.5 py-0 text-[9px] font-medium">
+            {t("queueJoinCounter.preview")}
+          </Badge>
+        )}
+      </span>
+      <span className="block text-xs font-medium leading-snug text-muted-foreground sm:text-sm">
+        {t("queueJoinCounter.label")}
       </span>
     </div>
   );
