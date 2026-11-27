@@ -43,9 +43,9 @@ The browser event triggers an immediate aggregate refetch. A 60-second refresh a
 
 ## Live display motion
 
-The homepage shows a small teal live indicator only when an authoritative API aggregate is available (`isMock: false`). It pulses gently twice when a subsequent live response changes the count; the exact new number fades and moves into place over 320 ms, without counting through invented intermediate totals. Initial loading, unchanged refresh responses and mock figures do not animate. Reduced-motion preferences disable both animations. The admin metric, fetching, refresh schedule and backend integration are unchanged; this indicator does not imply a new realtime subscription.
+The homepage shows a small teal live indicator whenever the counter renders, including beside the development preview placeholder. It pulses gently twice when a subsequent response changes the count; the exact new number fades and moves into place over 320 ms, without counting through invented intermediate totals. Initial loading and unchanged refresh responses never animate, and the rule is shared by mock and live figures through `shouldAnimateQueueJoinCount` in `queueJoinCounterCore.ts`. Reduced-motion preferences disable both animations. The admin metric, fetching, refresh schedule and backend integration are unchanged; this indicator does not imply a new realtime subscription.
 
-During developer UAT, verify a changed aggregate triggers one transition, an unchanged aggregate triggers none, unavailable data hides the counter, mock data never claims live status, and reduced-motion settings suppress all counter motion.
+During developer UAT, verify a changed aggregate triggers one transition, an unchanged aggregate triggers none, unavailable data hides the counter, and reduced-motion settings suppress all counter motion. On the published app the indicator can only ever appear beside a live aggregate, because mock figures are never rendered there.
 
 ## Mock data: code and documentation only
 
@@ -53,11 +53,11 @@ Development mode and the hosted development preview use the clearly labelled pla
 
 Mock data is never used as a fallback on the published app: `resolveQueueJoinSnapshot` returns `null` there, so the public counter renders nothing rather than a mock figure.
 
-No mock indicator is rendered in the interface — not on the homepage and not in the development preview. The placeholder is identified only in code (`MOCK_QUEUE_JOIN_COUNT`, the `isMock` flag, and the invisible `data-source="preview-placeholder"` attribute on the counter element) and in this document.
+No mock placeholder badge is rendered in the interface — not on the homepage and not in the development preview. The teal live dot is a live-status marker shown whenever the counter renders, including the preview placeholder. The placeholder itself is identified only in code (`MOCK_QUEUE_JOIN_COUNT`, the `isMock` flag, and the invisible `data-source="preview-placeholder"` attribute on the counter element) and in this document.
 
 UAT should verify:
 
-1. Homepage and `/analytics` show the same API count, and no mock indicator is visible anywhere in the interface.
+1. Homepage and `/analytics` show the same API count, and no mock placeholder badge is visible anywhere in the interface.
 2. One new join increases the backend aggregate once; retrying the same request does not.
 3. Failed, duplicate, and test-marked submissions do not increase it.
 4. A join through a clinic QR entry point is included.

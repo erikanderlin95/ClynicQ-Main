@@ -41,7 +41,7 @@ export const Hero = () => {
                 {t("hero.title2")}
               </span>
             </h1>
-            <p className="mx-auto max-w-xl text-sm leading-relaxed text-foreground/80 sm:text-base md:text-lg">
+            <p className="mx-auto max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg md:text-xl">
               {t("hero.subtitle")}
             </p>
           </div>

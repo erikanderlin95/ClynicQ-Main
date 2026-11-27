@@ -40,6 +40,19 @@ export function resolveQueueJoinSnapshot(
   };
 }
 
+/**
+ * Motion is presentation-only: a transition runs only when a rendered count is
+ * replaced by a different count. Mock and live figures behave identically so
+ * the preview matches production; initial loading and unchanged refresh
+ * responses never animate.
+ */
+export function shouldAnimateQueueJoinCount(
+  previous: QueueJoinCountSnapshot | null,
+  next: QueueJoinCountSnapshot | null,
+): boolean {
+  return Boolean(previous && next && previous.count !== next.count);
+}
+
 /** Session-only deduplication by queue entry ID; no patient data is retained. */
 export function createQueueJoinDeduplicator() {
   const seenEntryIds = new Set<string>();

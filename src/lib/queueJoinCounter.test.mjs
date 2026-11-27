@@ -5,6 +5,7 @@ import {
   MOCK_QUEUE_JOIN_COUNT,
   parseQueueJoinCountPayload,
   resolveQueueJoinSnapshot,
+  shouldAnimateQueueJoinCount,
 } from "./queueJoinCounterCore.ts";
 
 test("aggregate API accepts only non-negative integer counts", () => {
@@ -32,6 +33,18 @@ test("live data wins and production never falls back to mock figures", () => {
     count: MOCK_QUEUE_JOIN_COUNT + 2,
     isMock: true,
   });
+});
+
+test("counter motion runs on any changed displayed count, mock or live", () => {
+  const mock = (count) => ({ count, isMock: true });
+  const live = (count) => ({ count, isMock: false });
+
+  expect(shouldAnimateQueueJoinCount(null, mock(1284))).toBe(false);
+  expect(shouldAnimateQueueJoinCount(mock(1284), mock(1284))).toBe(false);
+  expect(shouldAnimateQueueJoinCount(mock(1284), mock(1285))).toBe(true);
+  expect(shouldAnimateQueueJoinCount(live(42), live(42))).toBe(false);
+  expect(shouldAnimateQueueJoinCount(live(42), live(43))).toBe(true);
+  expect(shouldAnimateQueueJoinCount(live(42), null)).toBe(false);
 });
 
 test("only the id-preview-- host may fall back to the placeholder count", () => {

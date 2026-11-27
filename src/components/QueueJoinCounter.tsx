@@ -3,6 +3,7 @@ import { UsersRound } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQueueJoinCounter } from "@/hooks/useQueueJoinCounter";
+import { shouldAnimateQueueJoinCount } from "@/lib/queueJoinCounterCore";
 import "@/content/queueJoinCounterTranslations";
 
 interface QueueJoinCounterProps {
@@ -20,10 +21,10 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
     const previous = previousSnapshot.current;
     previousSnapshot.current = snapshot;
 
-    // Only a changed authoritative aggregate represents live activity. Never
-    // animate initial loading, unchanged polling responses, or mock figures.
-    if (variant !== "hero" || !snapshot || snapshot.isMock || !previous ||
-        previous.isMock || previous.count === snapshot.count ||
+    // Motion is presentation-only: it runs when a rendered count is replaced by
+    // a different count, for mock and live figures alike. Initial loading and
+    // unchanged refresh responses never animate.
+    if (variant !== "hero" || !shouldAnimateQueueJoinCount(previous, snapshot) ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     // Reveal the exact new count rather than inventing intermediate totals.
@@ -79,15 +80,13 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
         <strong ref={numberRef} className="inline-block text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-live="polite" aria-atomic="true">
           {snapshot.count.toLocaleString(language)}
         </strong>
-        {!snapshot.isMock && (
-          <span
-            ref={indicatorRef}
-            className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
-            role="img"
-            aria-label={t("queueJoinCounter.live")}
-            title={t("queueJoinCounter.live")}
-          />
-        )}
+        <span
+          ref={indicatorRef}
+          className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+          role="img"
+          aria-label={t("queueJoinCounter.live")}
+          title={t("queueJoinCounter.live")}
+        />
       </span>
       <span className="block text-sm font-medium leading-snug text-foreground/70 sm:text-base">
         {t("queueJoinCounter.label")}
