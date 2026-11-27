@@ -33,42 +33,41 @@ export const Hero = () => {
       </svg>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,hsl(0,0%,100%,0.55),transparent_75%)]" />
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="mx-auto flex max-w-4xl flex-col items-center space-y-5 text-center md:space-y-7">
-          <div className="space-y-3">
-            <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-7 text-center md:gap-8">
+          <div className="space-y-5 md:space-y-6">
+            <h1 className="text-2xl font-bold leading-tight sm:text-4xl md:text-5xl">
               {t("hero.title1")}
-              <span className="mt-1 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-2">
+              <span className="mt-3 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-4">
                 {t("hero.title2")}
               </span>
             </h1>
-            <p className="mx-auto max-w-xl text-sm leading-snug text-foreground/80 sm:text-base md:text-lg">
+            <p className="mx-auto max-w-xl text-sm leading-relaxed text-foreground/80 sm:text-base md:text-lg">
               {t("hero.subtitle")}
             </p>
           </div>
 
           <QueueJoinCounter />
 
-          <div className="flex flex-col items-center gap-3.5 sm:gap-4">
+          <div className="flex w-full flex-col items-center gap-4 sm:gap-5">
             <Button
               size="lg"
-              className="explore-cta group h-auto min-h-10 w-auto gap-1.5 px-5 py-2.5 text-sm font-bold leading-tight ring-2 ring-primary/40 ring-offset-2 ring-offset-transparent transition-colors duration-200 hover:bg-primary/95 sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
+              className="h-auto min-h-12 w-52 max-w-full gap-2.5 whitespace-normal rounded-lg px-5 py-3 text-base font-semibold leading-tight transition-colors duration-200 sm:min-h-14 sm:w-60 sm:text-lg"
               onClick={() => window.dispatchEvent(new CustomEvent('open-explore-sidebar'))}
             >
-              <Compass className="h-3.5 w-3.5 shrink-0 transition-transform duration-500 group-hover:rotate-45 sm:h-4 sm:w-4" />
+              <Compass className="shrink-0" />
               <span className="min-w-0 break-words">{t("hero.findClinics")}</span>
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/25">
-                <ChevronRight className="h-3.5 w-3.5" />
-              </span>
+              <ChevronRight className="shrink-0" />
             </Button>
-            <button
+            <Button
+              variant="link"
               type="button"
               onClick={() => navigate('/for-clinics')}
-              className="group inline-flex items-center gap-1 text-xs font-semibold text-primary underline-offset-4 transition-colors hover:underline sm:text-sm"
+              className="h-auto max-w-full gap-2 whitespace-normal px-2 py-1 text-sm font-medium sm:text-base"
             >
               <Building2 className="h-3.5 w-3.5 shrink-0 opacity-80" />
               <span>{t("hero.findMyQueue")}</span>
-              <ChevronRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </button>
+              <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+            </Button>
           </div>
         </div>
       </div>

@@ -40,20 +40,20 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
   // in code and in the developer handover documentation only.
   return (
     <div
-      className="relative flex w-full max-w-full flex-col items-center gap-1.5 text-center"
+      className="relative flex w-full max-w-full flex-col items-center gap-2 text-center"
       data-testid="homepage-queue-join-counter"
       data-source={snapshot.isMock ? "preview-placeholder" : "live"}
     >
-      <span className="flex items-center gap-2 text-primary">
-        <UsersRound className="h-5 w-5 shrink-0 opacity-75 sm:h-6 sm:w-6" aria-hidden="true" />
-        <strong className="text-3xl font-bold leading-none tracking-tight tabular-nums sm:text-4xl" aria-live="polite">
+      <span className="mb-1 flex items-center gap-2.5 text-primary">
+        <UsersRound className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true" />
+        <strong className="text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-live="polite">
           {snapshot.count.toLocaleString(language)}
         </strong>
       </span>
-      <span className="block text-xs font-medium leading-snug text-muted-foreground sm:text-sm">
+      <span className="block text-sm font-normal leading-snug text-muted-foreground sm:text-base">
         {t("queueJoinCounter.label")}
       </span>
-      <span className="block text-[11px] font-medium leading-snug text-foreground/80 sm:text-xs">
+      <span className="block text-xs font-normal leading-snug text-foreground/80 sm:text-sm">
         {t("queueJoinCounter.since")}
       </span>
     </div>

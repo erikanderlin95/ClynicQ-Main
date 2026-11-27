@@ -1,5 +1,9 @@
 # ClynicQ roadmap
 
+## Reference-led hero proportions
+- [x] Refine only hero typography, counter proportions, button styling and spacing; retain the original gradient and abstract background unchanged.
+- [x] Verify mobile/desktop alignment and existing hero actions without touching queue logic or backend integration.
+
 ## Spacious hero spacing
 - [x] Open up the gaps between headline, description, counter and the two actions, and add hero top/bottom padding.
 - [x] Remove the visible preview placeholder from the interface; keep the mock count identified in code and handover docs only.
