@@ -40,20 +40,20 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
   // in code and in the developer handover documentation only.
   return (
     <div
-      className="relative flex w-full max-w-full flex-col items-center gap-2 text-center"
+      className="relative flex w-full max-w-full flex-col items-center text-center"
       data-testid="homepage-queue-join-counter"
       data-source={snapshot.isMock ? "preview-placeholder" : "live"}
     >
-      <span className="mb-1 flex items-center gap-2.5 text-primary">
+      <span className="mb-2 flex items-center gap-2.5 text-primary">
         <UsersRound className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true" />
         <strong className="text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-live="polite">
           {snapshot.count.toLocaleString(language)}
         </strong>
       </span>
-      <span className="block text-sm font-normal leading-snug text-muted-foreground sm:text-base">
+      <span className="block text-sm font-medium leading-snug text-foreground/70 sm:text-base">
         {t("queueJoinCounter.label")}
       </span>
-      <span className="block text-xs font-normal leading-snug text-foreground/80 sm:text-sm">
+      <span className="mt-1 block text-xs font-normal leading-snug text-foreground/80 sm:text-sm">
         {t("queueJoinCounter.since")}
       </span>
     </div>
