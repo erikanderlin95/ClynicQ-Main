@@ -41,7 +41,7 @@ export const Hero = () => {
       <div className="container relative z-10 px-4 md:px-6">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-7 text-center md:gap-8">
           <div className="relative top-1 space-y-3 pt-1">
-            <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
+            <h1 className="text-[2.1rem] font-bold sm:text-[2.6rem] md:text-[3.35rem]">
               {t("hero.title1")}
               <span className="mt-1 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-2">
                 {t("hero.title2")}

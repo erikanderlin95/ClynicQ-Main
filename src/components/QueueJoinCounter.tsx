@@ -1,21 +1,71 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { UsersRound } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQueueJoinCounter } from "@/hooks/useQueueJoinCounter";
-import { shouldAnimateQueueJoinCount } from "@/lib/queueJoinCounterCore";
+import { queueJoinCountUpValue, shouldAnimateQueueJoinCount } from "@/lib/queueJoinCounterCore";
 import "@/content/queueJoinCounterTranslations";
 
 interface QueueJoinCounterProps {
   variant?: "hero" | "metric";
 }
 
+/** One-time reveal of the actual total; it never invents extra joins. */
+const COUNT_UP_DURATION_MS = 900;
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
   const { language, t } = useLanguage();
   const { snapshot, loading } = useQueueJoinCounter();
   const numberRef = useRef<HTMLElement>(null);
-  const indicatorRef = useRef<HTMLSpanElement>(null);
   const previousSnapshot = useRef(snapshot);
+  const targetRef = useRef<number | null>(null);
+  const frameRef = useRef<number | null>(null);
+  const runningRef = useRef(false);
+  const firstRevealDoneRef = useRef(false);
+  const [revealedCount, setRevealedCount] = useState<number | null>(null);
+
+  // The first reveal counts up to the real total. The loop is owned by refs, not
+  // by this effect, so a re-render while it runs cannot cut it short: it always
+  // lands exactly on the latest total. Once that reveal is done, a later response
+  // carrying a different total simply replaces the number.
+  useEffect(() => {
+    if (variant !== "hero" || !snapshot) return;
+    const target = snapshot.count;
+    targetRef.current = target;
+
+    if (prefersReducedMotion() || firstRevealDoneRef.current) {
+      setRevealedCount(target);
+      return;
+    }
+    if (runningRef.current) return;
+    runningRef.current = true;
+
+    const startedAt = performance.now();
+    frameRef.current = requestAnimationFrame(function tick(now: number) {
+      const current = targetRef.current ?? target;
+      const progress = Math.min(1, (now - startedAt) / COUNT_UP_DURATION_MS);
+      setRevealedCount(queueJoinCountUpValue(current, progress));
+      if (progress < 1) {
+        frameRef.current = requestAnimationFrame(tick);
+      } else {
+        runningRef.current = false;
+        firstRevealDoneRef.current = true;
+        frameRef.current = null;
+      }
+    });
+  }, [snapshot, variant]);
+
+  // Stop the reveal if the counter is removed from the page.
+  useEffect(() => () => {
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    frameRef.current = null;
+    runningRef.current = false;
+    firstRevealDoneRef.current = false;
+  }, []);
 
   useEffect(() => {
     const previous = previousSnapshot.current;
@@ -25,22 +75,15 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
     // a different count, for mock and live figures alike. Initial loading and
     // unchanged refresh responses never animate.
     if (variant !== "hero" || !shouldAnimateQueueJoinCount(previous, snapshot) ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        prefersReducedMotion()) return;
 
     // Reveal the exact new count rather than inventing intermediate totals.
     const numberAnimation = numberRef.current?.animate(
       [{ opacity: 0.55, transform: "translateY(2px)" }, { opacity: 1, transform: "translateY(0)" }],
       { duration: 320, easing: "ease-out" },
     );
-    const indicatorAnimation = indicatorRef.current?.animate(
-      [{ opacity: 1 }, { opacity: 0.35 }, { opacity: 1 }],
-      { duration: 900, iterations: 2, easing: "ease-in-out" },
-    );
 
-    return () => {
-      numberAnimation?.cancel();
-      indicatorAnimation?.cancel();
-    };
+    return () => numberAnimation?.cancel();
   }, [snapshot, variant]);
 
   if (variant === "metric") {
@@ -69,6 +112,8 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
 
   // The placeholder is never rendered in the interface: mock data is identified
   // in code and in the developer handover documentation only.
+  const shownCount = revealedCount ?? (prefersReducedMotion() ? snapshot.count : 0);
+
   return (
     <div
       className="relative flex w-full max-w-full flex-col items-center text-center"
@@ -77,16 +122,12 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
     >
       <span className="mb-2 flex items-center gap-2.5 text-primary">
         <UsersRound className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true" />
-        <strong ref={numberRef} className="inline-block text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-live="polite" aria-atomic="true">
-          {snapshot.count.toLocaleString(language)}
+        <strong ref={numberRef} className="inline-block text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-hidden="true">
+          {shownCount.toLocaleString(language)}
         </strong>
-        <span
-          ref={indicatorRef}
-          className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
-          role="img"
-          aria-label={t("queueJoinCounter.live")}
-          title={t("queueJoinCounter.live")}
-        />
+        <span className="sr-only" aria-live="polite" aria-atomic="true">
+          {snapshot.count.toLocaleString(language)}
+        </span>
       </span>
       <span className="block text-sm font-medium leading-snug text-foreground/70 sm:text-base">
         {t("queueJoinCounter.label")}

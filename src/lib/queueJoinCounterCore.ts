@@ -53,6 +53,18 @@ export function shouldAnimateQueueJoinCount(
   return Boolean(previous && next && previous.count !== next.count);
 }
 
+/**
+ * One-time reveal value for the homepage counter: eases from 0 up to the real
+ * total. It only ever shows numbers between 0 and the actual count, so the
+ * animation never invents joins that did not happen.
+ */
+export function queueJoinCountUpValue(target: number, progress: number): number {
+  if (!Number.isSafeInteger(target) || target <= 0) return 0;
+  const clamped = Math.min(1, Math.max(0, progress));
+  const eased = 1 - Math.pow(1 - clamped, 3);
+  return Math.round(target * eased);
+}
+
 /** Session-only deduplication by queue entry ID; no patient data is retained. */
 export function createQueueJoinDeduplicator() {
   const seenEntryIds = new Set<string>();

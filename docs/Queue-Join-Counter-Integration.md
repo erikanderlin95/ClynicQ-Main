@@ -41,11 +41,11 @@ If the existing queue table is pruned or rows are deleted, use the backend's exi
 
 The browser event triggers an immediate aggregate refetch. A 60-second refresh and a refresh when the page becomes visible pick up joins made by other visitors. Session-only entry-ID deduplication prevents repeated success notifications from incrementing the development preview twice. Production always trusts the backend aggregate rather than adding browser increments.
 
-## Live display motion
+## Display motion
 
-The homepage shows a small teal live indicator whenever the counter renders, including beside the development preview placeholder. It pulses gently twice when a subsequent response changes the count; the exact new number fades and moves into place over 320 ms, without counting through invented intermediate totals. Initial loading and unchanged refresh responses never animate, and the rule is shared by mock and live figures through `shouldAnimateQueueJoinCount` in `queueJoinCounterCore.ts`. Reduced-motion preferences disable both animations. The admin metric, fetching, refresh schedule and backend integration are unchanged; this indicator does not imply a new realtime subscription.
+The homepage counter counts up from 0 to the actual total once, over 900 ms, the first time it renders (`queueJoinCountUpValue` in `queueJoinCounterCore.ts`). The reveal only ever shows numbers between 0 and the real count, so it never invents joins. A later response carrying a different total replaces the number with a 320 ms fade and slide; unchanged refreshes and initial loading never animate, and mock and live figures follow the same rule (`shouldAnimateQueueJoinCount`). No continuous or looping animation runs, because that would imply activity that is not happening. Reduced-motion preferences show the final number immediately. Screen-reader users receive the actual total once, from a visually hidden live region, instead of every frame of the reveal. The admin metric, fetching, refresh schedule and backend integration are unchanged.
 
-During developer UAT, verify a changed aggregate triggers one transition, an unchanged aggregate triggers none, unavailable data hides the counter, and reduced-motion settings suppress all counter motion. On the published app the indicator can only ever appear beside a live aggregate, because mock figures are never rendered there.
+During developer UAT, verify the count-up runs once on first load and lands exactly on the backend total, a changed aggregate triggers one transition, an unchanged aggregate triggers none, unavailable data hides the counter, and reduced-motion settings suppress all counter motion.
 
 ## Mock data: code and documentation only
 
@@ -53,7 +53,7 @@ Development mode and the hosted development preview use the clearly labelled pla
 
 Mock data is never used as a fallback on the published app: `resolveQueueJoinSnapshot` returns `null` there, so the public counter renders nothing rather than a mock figure.
 
-No mock placeholder badge is rendered in the interface — not on the homepage and not in the development preview. The teal live dot is a live-status marker shown whenever the counter renders, including the preview placeholder. The placeholder itself is identified only in code (`MOCK_QUEUE_JOIN_COUNT`, the `isMock` flag, and the invisible `data-source="preview-placeholder"` attribute on the counter element) and in this document.
+No mock placeholder badge and no live-status marker are rendered in the interface — not on the homepage and not in the development preview. The placeholder itself is identified only in code (`MOCK_QUEUE_JOIN_COUNT`, the `isMock` flag, and the invisible `data-source="preview-placeholder"` attribute on the counter element) and in this document.
 
 UAT should verify:
 

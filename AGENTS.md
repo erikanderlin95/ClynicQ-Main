@@ -14,4 +14,4 @@
 - Optimize bundled partner logos with vite-imagetools import variants while retaining original sources, transparency, proportions and display sizing; this reduces downloads without altering branding.
 - Derive filtered clinic results with useMemo and reset pagination only on filter criteria changes, not queue refreshes; this avoids duplicate list state and preserves browsing position.
 - Home healthcare listings share a typed category-specific provider dictionary and renderer; localize provider details and suppress contact actions on placeholders so future providers can be added without inventing information.
-- Keep homepage counter motion presentation-only and driven only by a changed displayed count (mock or live alike), with reduced-motion support, so animation never fabricates live activity or affects aggregate fetching.
+- Keep homepage counter motion presentation-only: a one-time count-up to the actual total on first reveal plus a short transition when a later response changes it, with reduced-motion support, so animation never fabricates live activity or affects aggregate fetching.

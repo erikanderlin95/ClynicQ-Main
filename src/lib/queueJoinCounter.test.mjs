@@ -4,6 +4,7 @@ import {
   isPreviewHost,
   MOCK_QUEUE_JOIN_COUNT,
   parseQueueJoinCountPayload,
+  queueJoinCountUpValue,
   resolveQueueJoinSnapshot,
   shouldAnimateQueueJoinCount,
 } from "./queueJoinCounterCore.ts";
@@ -47,10 +48,29 @@ test("counter motion runs on any changed displayed count, mock or live", () => {
   expect(shouldAnimateQueueJoinCount(live(42), null)).toBe(false);
 });
 
-test("only the id-preview-- host may fall back to the placeholder count", () => {
-  expect(isPreviewHost("id-preview--819d6307-a88b-4110-8547-b8ff24ea6b41.lovable.app")).toBe(true);
+test("only the id-preview-- host may fall back to the placeholder count", () => {  expect(isPreviewHost("id-preview--819d6307-a88b-4110-8547-b8ff24ea6b41.lovable.app")).toBe(true);
   expect(isPreviewHost("some-preview--819d6307.lovable.app")).toBe(true);
   expect(isPreviewHost("idea-to-prototype-alchemy.lovable.app")).toBe(false);
   expect(isPreviewHost("clinyq.example.sg")).toBe(false);
   expect(isPreviewHost("")).toBe(false);
+});
+
+test("the first reveal counts up to the real total without inventing joins", () => {
+  expect(queueJoinCountUpValue(1284, 0)).toBe(0);
+  expect(queueJoinCountUpValue(1284, 1)).toBe(1284);
+  expect(queueJoinCountUpValue(1284, 0.5)).toBe(1124);
+  expect(queueJoinCountUpValue(1284, -1)).toBe(0);
+  expect(queueJoinCountUpValue(1284, 2)).toBe(1284);
+
+  let previous = -1;
+  for (let step = 0; step <= 10; step += 1) {
+    const value = queueJoinCountUpValue(1284, step / 10);
+    expect(value).toBeGreaterThanOrEqual(previous);
+    expect(value).toBeLessThanOrEqual(1284);
+    previous = value;
+  }
+
+  for (const target of [0, -5, 1.5, Number.NaN]) {
+    expect(queueJoinCountUpValue(target, 0.5)).toBe(0);
+  }
 });
