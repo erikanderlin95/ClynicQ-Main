@@ -35,7 +35,7 @@ export const Hero = () => {
       <div className="container relative z-10 px-4 md:px-6">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-7 text-center md:gap-8">
           <div className="space-y-5 md:space-y-6">
-            <h1 className="text-2xl font-bold leading-tight sm:text-4xl md:text-5xl">
+            <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
               {t("hero.title1")}
               <span className="mt-3 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-4">
                 {t("hero.title2")}
@@ -51,12 +51,14 @@ export const Hero = () => {
           <div className="flex w-full flex-col items-center gap-4 sm:gap-5">
             <Button
               size="lg"
-              className="h-auto min-h-12 w-52 max-w-full gap-2.5 whitespace-normal rounded-lg px-5 py-3 text-base font-semibold leading-tight transition-colors duration-200 sm:min-h-14 sm:w-60 sm:text-lg"
+              className="explore-cta group h-auto min-h-10 w-auto gap-1.5 px-5 py-2.5 text-sm font-bold leading-tight ring-2 ring-primary/40 ring-offset-2 ring-offset-transparent transition-colors duration-200 hover:bg-primary/95 sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
               onClick={() => window.dispatchEvent(new CustomEvent('open-explore-sidebar'))}
             >
-              <Compass className="shrink-0" />
+              <Compass className="h-3.5 w-3.5 shrink-0 transition-transform duration-500 group-hover:rotate-45 sm:h-4 sm:w-4" />
               <span className="min-w-0 break-words">{t("hero.findClinics")}</span>
-              <ChevronRight className="shrink-0" />
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-foreground/25">
+                <ChevronRight className="h-3.5 w-3.5" />
+              </span>
             </Button>
             <Button
               variant="link"
