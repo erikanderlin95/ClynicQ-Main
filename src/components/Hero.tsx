@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Building2, Compass, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavigate } from "react-router-dom";
+import { QueueJoinCounter } from "@/components/QueueJoinCounter";
 
 export const Hero = () => {
   const { t } = useLanguage();
@@ -54,6 +55,8 @@ export const Hero = () => {
               );
             })()}
           </div>
+
+          <QueueJoinCounter />
 
           <div className="flex flex-col sm:flex-row gap-3 mx-auto mt-1 justify-center">
             <Button 

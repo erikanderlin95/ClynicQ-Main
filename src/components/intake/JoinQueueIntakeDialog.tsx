@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { notifySuccessfulQueueJoin } from "@/lib/queueJoinCounter";
 
 const sanitizeMobileNumber = (mobile: string): string => {
   const hasPlus = mobile.trim().startsWith("+");
@@ -124,6 +125,7 @@ export const JoinQueueIntakeDialog = ({
 
 
       const createdEntry = response.entry;
+      notifySuccessfulQueueJoin(createdEntry.id);
       localStorage.setItem(`queue_mobile_${clinicId}`, sanitizedMobile);
       if (patientNric.trim()) localStorage.setItem(`queue_nric_${clinicId}`, patientNric.trim().toUpperCase());
       toast.success("You've joined the queue");

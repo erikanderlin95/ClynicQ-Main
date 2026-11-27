@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { TrendingUp, Users, Clock, Calendar, Activity, BarChart3 } from "lucide-react";
+import { QueueJoinCounter } from "@/components/QueueJoinCounter";
 
 export default function Analytics() {
   const navigate = useNavigate();
@@ -128,7 +129,9 @@ export default function Analytics() {
             <Activity className="h-6 w-6" />
             Operational Trends
           </h2>
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-4">
+            <QueueJoinCounter variant="metric" />
+
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">

@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { CheckCircle2, AlertTriangle, Copy, Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { format } from "date-fns";
+import { notifySuccessfulQueueJoin } from "@/lib/queueJoinCounter";
 
 // Singapore WhatsApp number: digits only, defaulting to +65 for local 8-digit numbers.
 const toWhatsAppNumber = (phone: string): string => {
@@ -256,6 +257,7 @@ export default function Queue() {
 
       // Update UI immediately (don’t rely on realtime)
       if (createdEntry) {
+        notifySuccessfulQueueJoin(createdEntry.id);
         setMyQueueEntry(createdEntry);
         setQueueData([...(currentQueue || []), createdEntry].sort((a: any, b: any) => a.queue_number - b.queue_number));
       }
