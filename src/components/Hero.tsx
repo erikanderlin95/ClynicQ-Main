@@ -34,10 +34,10 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,hsl(0,0%,100%,0.55),transparent_75%)]" />
       <div className="container relative z-10 px-4 md:px-6">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-7 text-center md:gap-8">
-          <div className="space-y-5 md:space-y-6">
+          <div className="space-y-3 md:space-y-4">
             <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
               {t("hero.title1")}
-              <span className="mt-3 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-4">
+              <span className="mt-1 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-2">
                 {t("hero.title2")}
               </span>
             </h1>
