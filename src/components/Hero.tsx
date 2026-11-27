@@ -9,7 +9,7 @@ export const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden bg-white py-5 md:py-9">
+    <section className="relative flex items-center justify-center overflow-hidden bg-white py-8 md:py-12">
       <div className="absolute inset-0 bg-[linear-gradient(105deg,hsl(168,55%,84%)_0%,hsl(175,55%,92%)_22%,hsl(190,50%,97%)_50%,hsl(200,60%,94%)_78%,hsl(210,65%,86%)_100%)]" />
       <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 700" aria-hidden="true">
         <defs>
@@ -33,8 +33,8 @@ export const Hero = () => {
       </svg>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,hsl(0,0%,100%,0.55),transparent_75%)]" />
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="mx-auto flex max-w-4xl flex-col items-center space-y-2.5 text-center md:space-y-4">
-          <div className="space-y-2">
+        <div className="mx-auto flex max-w-4xl flex-col items-center space-y-5 text-center md:space-y-7">
+          <div className="space-y-3">
             <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
               {t("hero.title1")}
               <span className="mt-1 block bg-gradient-to-r from-[hsl(220,90%,58%)] via-[hsl(215,90%,55%)] to-[hsl(210,90%,55%)] bg-clip-text text-transparent sm:mt-2">
@@ -48,7 +48,7 @@ export const Hero = () => {
 
           <QueueJoinCounter />
 
-          <div className="flex flex-col items-center gap-1.5 sm:gap-2">
+          <div className="flex flex-col items-center gap-3.5 sm:gap-4">
             <Button
               size="lg"
               className="explore-cta group h-auto min-h-10 w-auto gap-1.5 px-5 py-2.5 text-sm font-bold leading-tight ring-2 ring-primary/40 ring-offset-2 ring-offset-transparent transition-colors duration-200 hover:bg-primary/95 sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"

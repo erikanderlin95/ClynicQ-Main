@@ -1,5 +1,4 @@
 import { UsersRound } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQueueJoinCounter } from "@/hooks/useQueueJoinCounter";
@@ -27,11 +26,7 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
             {loading ? "…" : snapshot ? snapshot.count.toLocaleString(language) : "—"}
           </div>
           <p className="text-xs text-muted-foreground mt-1">
-            {snapshot?.isMock
-              ? t("queueJoinCounter.preview")
-              : snapshot
-                ? t("queueJoinCounter.label")
-                : t("queueJoinCounter.unavailable")}
+            {snapshot ? t("queueJoinCounter.label") : t("queueJoinCounter.unavailable")}
           </p>
         </CardContent>
       </Card>
@@ -41,11 +36,11 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
   // A missing production endpoint or invalid response must not leave an empty card.
   if (loading || !snapshot) return null;
 
-  // The placeholder badge is absolutely positioned so the counter stays centred
-  // on its own axis regardless of the indicator's presence or width.
+  // The placeholder is never rendered in the interface: mock data is identified
+  // in code and in the developer handover documentation only.
   return (
     <div
-      className="relative flex w-full max-w-full flex-col items-center gap-1 text-center"
+      className="relative flex w-full max-w-full flex-col items-center gap-1.5 text-center"
       data-testid="homepage-queue-join-counter"
       data-source={snapshot.isMock ? "preview-placeholder" : "live"}
     >
@@ -58,17 +53,9 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
       <span className="block text-xs font-medium leading-snug text-muted-foreground sm:text-sm">
         {t("queueJoinCounter.label")}
       </span>
-      <span className="block text-[10px] leading-snug text-muted-foreground opacity-75 sm:text-xs">
+      <span className="block text-[11px] font-medium leading-snug text-foreground/80 sm:text-xs">
         {t("queueJoinCounter.since")}
       </span>
-      {import.meta.env.DEV && snapshot.isMock && (
-        <Badge
-          variant="outline"
-          className="pointer-events-none absolute right-0 top-0 px-1 py-0 text-[8px] font-medium"
-        >
-          {t("queueJoinCounter.preview")}
-        </Badge>
-      )}
     </div>
   );
 }

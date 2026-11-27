@@ -1,5 +1,10 @@
 # ClynicQ roadmap
 
+## Spacious hero spacing
+- [x] Open up the gaps between headline, description, counter and the two actions, and add hero top/bottom padding.
+- [x] Remove the visible preview placeholder from the interface; keep the mock count identified in code and handover docs only.
+- [x] Raise the contrast of "Since September 2026" and keep mobile and desktop alignment balanced.
+
 ## Less crowded mobile hero
 - [x] Replace the hero description with the approved single-line wording in all four languages.
 - [x] Keep the counter centred with the teal icon, add "Since September 2026", and keep the placeholder indicator development-only and clear of the count.

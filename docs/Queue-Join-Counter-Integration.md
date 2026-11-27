@@ -41,13 +41,15 @@ If the existing queue table is pruned or rows are deleted, use the backend's exi
 
 The browser event triggers an immediate aggregate refetch. A 60-second refresh and a refresh when the page becomes visible pick up joins made by other visitors. Session-only entry-ID deduplication prevents repeated success notifications from incrementing the development preview twice. Production always trusts the backend aggregate rather than adding browser increments.
 
-## Preview placeholder and UAT
+## Mock data: code and documentation only
 
-Development mode uses the clearly labelled placeholder `MOCK_QUEUE_JOIN_COUNT = 1284` in `queueJoinCounterCore.ts` when no live endpoint is available. Mock data is never used as a production fallback.
+Development mode uses the clearly labelled placeholder `MOCK_QUEUE_JOIN_COUNT = 1284` in `queueJoinCounterCore.ts` when no live endpoint is available. Mock data is never used as a production fallback: `resolveQueueJoinSnapshot` returns `null` outside development, so the public counter renders nothing rather than a mock figure.
+
+No mock indicator is rendered in the interface — not on the homepage and not in the development preview. The placeholder is identified only in code (`MOCK_QUEUE_JOIN_COUNT`, the `isMock` flag, and the invisible `data-source="preview-placeholder"` attribute on the counter element) and in this document.
 
 UAT should verify:
 
-1. Homepage and `/analytics` show the same API count and preview placeholder state.
+1. Homepage and `/analytics` show the same API count, and no mock indicator is visible anywhere in the interface.
 2. One new join increases the backend aggregate once; retrying the same request does not.
 3. Failed, duplicate, and test-marked submissions do not increase it.
 4. A join through a clinic QR entry point is included.
