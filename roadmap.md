@@ -95,3 +95,8 @@
 - [x] Show the placeholder count in the hosted development preview (`id-preview--` host) as well as local development, so the queue count and its two subtext lines are visible there.
 - [x] Keep the published app free of mock figures: it still renders nothing until the real aggregate endpoint is connected.
 - [x] Cover the host rule with a test and note it in the handover document.
+
+## Hero text-link layout
+- [x] Shrink the "List Your Clinic" link to its text so the icon and arrow sit beside it in every language, instead of the icon and arrow being pushed to opposite screen edges in Tamil.
+- [x] Keep the arrow attached to the final word so it can never wrap onto a line of its own on narrow phones.
+- [x] Verify the link in English, Chinese, Malay and Tamil at 411px and 320px and on desktop: no clipping, link centred, and it still opens the clinic listing page.

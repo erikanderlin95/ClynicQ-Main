@@ -8,6 +8,12 @@ export const Hero = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
 
+  // Keep the arrow attached to the final word so it can never wrap onto its own line.
+  const listClinicLabel = t("hero.findMyQueue");
+  const labelBreak = listClinicLabel.lastIndexOf(" ");
+  const listClinicHead = labelBreak === -1 ? "" : listClinicLabel.slice(0, labelBreak + 1);
+  const listClinicTail = labelBreak === -1 ? listClinicLabel : listClinicLabel.slice(labelBreak + 1);
+
   return (
     <section className="relative flex items-center justify-center overflow-hidden bg-white py-8 md:py-12">
       <div className="absolute inset-0 bg-[linear-gradient(105deg,hsl(168,55%,84%)_0%,hsl(175,55%,92%)_22%,hsl(190,50%,97%)_50%,hsl(200,60%,94%)_78%,hsl(210,65%,86%)_100%)]" />
@@ -64,11 +70,16 @@ export const Hero = () => {
               variant="link"
               type="button"
               onClick={() => navigate('/for-clinics')}
-              className="h-auto max-w-full gap-2 whitespace-normal px-2 py-1 text-sm font-medium sm:text-base"
+              className="inline h-auto max-w-full whitespace-normal px-1 py-1 text-center text-sm font-medium leading-snug sm:text-base"
             >
-              <Building2 className="h-3.5 w-3.5 shrink-0 opacity-80" />
-              <span>{t("hero.findMyQueue")}</span>
-              <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+              <Building2 className="mr-1.5 inline h-3.5 w-3.5 shrink-0 align-[-3px] opacity-80" />
+              <span>
+                {listClinicHead}
+                <span className="whitespace-nowrap">
+                  {listClinicTail}
+                  <ChevronRight className="ml-1 inline h-3.5 w-3.5 shrink-0 align-[-3px]" />
+                </span>
+              </span>
             </Button>
           </div>
         </div>
