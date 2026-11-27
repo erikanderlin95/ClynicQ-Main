@@ -15,6 +15,15 @@ export function parseQueueJoinCountPayload(payload: unknown): number | null {
 }
 
 /**
+ * Lovable serves the development preview as a production build from a host
+ * prefixed with `id-preview--`; the published app runs on any other host.
+ * Only the preview may fall back to the placeholder count.
+ */
+export function isPreviewHost(hostname: string): boolean {
+  return hostname.startsWith("id-preview--") || hostname.includes("-preview--");
+}
+
+/**
  * Live data always wins. Mock figures are available only to the development
  * preview; an unavailable production response stays null so the UI can hide.
  */

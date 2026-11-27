@@ -1,5 +1,6 @@
 import {
   createQueueJoinDeduplicator,
+  isPreviewHost,
   parseQueueJoinCountPayload,
   resolveQueueJoinSnapshot,
   type QueueJoinCountSnapshot,
@@ -10,6 +11,16 @@ export type { QueueJoinCountSnapshot } from "./queueJoinCounterCore";
 
 const successfulJoins = createQueueJoinDeduplicator();
 const configuredEndpoint = import.meta.env.VITE_QUEUE_JOIN_COUNT_API_URL?.trim();
+
+/**
+ * Development mode and the hosted development preview (`id-preview--` host)
+ * may show the placeholder count; the published app never does.
+ */
+export function isPreviewEnvironment(): boolean {
+  if (import.meta.env.DEV) return true;
+  if (typeof window === "undefined") return false;
+  return isPreviewHost(window.location.hostname);
+}
 
 /** Call only after the backend confirms a newly created queue entry. */
 export function notifySuccessfulQueueJoin(entryId: string): boolean {
@@ -48,5 +59,5 @@ async function fetchLiveAggregateCount(): Promise<number | null> {
  */
 export async function fetchQueueJoinCount(): Promise<QueueJoinCountSnapshot | null> {
   const liveCount = await fetchLiveAggregateCount();
-  return resolveQueueJoinSnapshot(liveCount, import.meta.env.DEV, successfulJoins.size);
+  return resolveQueueJoinSnapshot(liveCount, isPreviewEnvironment(), successfulJoins.size);
 }

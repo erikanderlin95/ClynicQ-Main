@@ -43,7 +43,9 @@ The browser event triggers an immediate aggregate refetch. A 60-second refresh a
 
 ## Mock data: code and documentation only
 
-Development mode uses the clearly labelled placeholder `MOCK_QUEUE_JOIN_COUNT = 1284` in `queueJoinCounterCore.ts` when no live endpoint is available. Mock data is never used as a production fallback: `resolveQueueJoinSnapshot` returns `null` outside development, so the public counter renders nothing rather than a mock figure.
+Development mode and the hosted development preview use the clearly labelled placeholder `MOCK_QUEUE_JOIN_COUNT = 1284` in `queueJoinCounterCore.ts` when no live endpoint is available. `isPreviewHost` in the same file recognises the preview by its `id-preview--` hostname prefix, so the counter stays visible for review while the preview is still a production build.
+
+Mock data is never used as a fallback on the published app: `resolveQueueJoinSnapshot` returns `null` there, so the public counter renders nothing rather than a mock figure.
 
 No mock indicator is rendered in the interface — not on the homepage and not in the development preview. The placeholder is identified only in code (`MOCK_QUEUE_JOIN_COUNT`, the `isMock` flag, and the invisible `data-source="preview-placeholder"` attribute on the counter element) and in this document.
 
@@ -54,6 +56,6 @@ UAT should verify:
 3. Failed, duplicate, and test-marked submissions do not increase it.
 4. A join through a clinic QR entry point is included.
 5. The count survives a day boundary and clinic removal.
-6. Removing the endpoint or returning invalid JSON hides the public counter without showing a mock number.
+6. On the published app, removing the endpoint or returning invalid JSON hides the public counter without showing a mock number; the `id-preview--` preview host keeps showing the placeholder until the endpoint is connected.
 7. API responses and browser rendering expose no patient-identifiable information.
 8. The public "Since September 2026" line (`queueJoinCounter.since`) still matches the earliest successful join actually included in the aggregate. If the counted history starts earlier or later, update that label in all four languages in `src/content/queueJoinCounterTranslations.ts` — the label is display text only and is not derived from the API response.

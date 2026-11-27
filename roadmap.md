@@ -84,3 +84,8 @@
 
 ## 24-hour clinic listing placement
 - [x] Keep 24-hour directory clinic listings exclusively on the dedicated 24-hour clinics page; verify old caches are excluded and all 11 directory cards remain.
+
+## Counter visible in the hosted preview
+- [x] Show the placeholder count in the hosted development preview (`id-preview--` host) as well as local development, so the queue count and its two subtext lines are visible there.
+- [x] Keep the published app free of mock figures: it still renders nothing until the real aggregate endpoint is connected.
+- [x] Cover the host rule with a test and note it in the handover document.
