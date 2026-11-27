@@ -1,5 +1,9 @@
 # ClynicQ roadmap
 
+## Live counter refinement
+- [x] Add a subtle indicator and exact-number transition only for changed live aggregates, respecting reduced motion and leaving mock figures static.
+- [x] Verify mobile/desktop display and changed, unchanged, mock and reduced-motion states without touching backend data or creating users.
+
 ## Reference-led hero proportions
 - [x] Refine only hero typography, counter proportions, button styling and spacing; retain the original gradient and abstract background unchanged.
 - [x] Verify mobile/desktop alignment and existing hero actions without touching queue logic or backend integration.

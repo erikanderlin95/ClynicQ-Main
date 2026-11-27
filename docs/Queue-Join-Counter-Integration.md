@@ -41,6 +41,12 @@ If the existing queue table is pruned or rows are deleted, use the backend's exi
 
 The browser event triggers an immediate aggregate refetch. A 60-second refresh and a refresh when the page becomes visible pick up joins made by other visitors. Session-only entry-ID deduplication prevents repeated success notifications from incrementing the development preview twice. Production always trusts the backend aggregate rather than adding browser increments.
 
+## Live display motion
+
+The homepage shows a small teal live indicator only when an authoritative API aggregate is available (`isMock: false`). It pulses gently twice when a subsequent live response changes the count; the exact new number fades and moves into place over 320 ms, without counting through invented intermediate totals. Initial loading, unchanged refresh responses and mock figures do not animate. Reduced-motion preferences disable both animations. The admin metric, fetching, refresh schedule and backend integration are unchanged; this indicator does not imply a new realtime subscription.
+
+During developer UAT, verify a changed aggregate triggers one transition, an unchanged aggregate triggers none, unavailable data hides the counter, mock data never claims live status, and reduced-motion settings suppress all counter motion.
+
 ## Mock data: code and documentation only
 
 Development mode and the hosted development preview use the clearly labelled placeholder `MOCK_QUEUE_JOIN_COUNT = 1284` in `queueJoinCounterCore.ts` when no live endpoint is available. `isPreviewHost` in the same file recognises the preview by its `id-preview--` hostname prefix, so the counter stays visible for review while the preview is still a production build.

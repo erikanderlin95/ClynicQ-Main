@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { UsersRound } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -11,6 +12,35 @@ interface QueueJoinCounterProps {
 export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
   const { language, t } = useLanguage();
   const { snapshot, loading } = useQueueJoinCounter();
+  const numberRef = useRef<HTMLElement>(null);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
+  const previousSnapshot = useRef(snapshot);
+
+  useEffect(() => {
+    const previous = previousSnapshot.current;
+    previousSnapshot.current = snapshot;
+
+    // Only a changed authoritative aggregate represents live activity. Never
+    // animate initial loading, unchanged polling responses, or mock figures.
+    if (variant !== "hero" || !snapshot || snapshot.isMock || !previous ||
+        previous.isMock || previous.count === snapshot.count ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Reveal the exact new count rather than inventing intermediate totals.
+    const numberAnimation = numberRef.current?.animate(
+      [{ opacity: 0.55, transform: "translateY(2px)" }, { opacity: 1, transform: "translateY(0)" }],
+      { duration: 320, easing: "ease-out" },
+    );
+    const indicatorAnimation = indicatorRef.current?.animate(
+      [{ opacity: 1 }, { opacity: 0.35 }, { opacity: 1 }],
+      { duration: 900, iterations: 2, easing: "ease-in-out" },
+    );
+
+    return () => {
+      numberAnimation?.cancel();
+      indicatorAnimation?.cancel();
+    };
+  }, [snapshot, variant]);
 
   if (variant === "metric") {
     return (
@@ -46,9 +76,18 @@ export function QueueJoinCounter({ variant = "hero" }: QueueJoinCounterProps) {
     >
       <span className="mb-2 flex items-center gap-2.5 text-primary">
         <UsersRound className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" aria-hidden="true" />
-        <strong className="text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-live="polite">
+        <strong ref={numberRef} className="inline-block text-4xl font-bold leading-none tabular-nums sm:text-5xl" aria-live="polite" aria-atomic="true">
           {snapshot.count.toLocaleString(language)}
         </strong>
+        {!snapshot.isMock && (
+          <span
+            ref={indicatorRef}
+            className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+            role="img"
+            aria-label={t("queueJoinCounter.live")}
+            title={t("queueJoinCounter.live")}
+          />
+        )}
       </span>
       <span className="block text-sm font-medium leading-snug text-foreground/70 sm:text-base">
         {t("queueJoinCounter.label")}

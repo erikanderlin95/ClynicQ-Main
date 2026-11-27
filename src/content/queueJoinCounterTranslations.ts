@@ -5,6 +5,7 @@ const en = {
   "queueJoinCounter.since": "Since September 2026",
   "queueJoinCounter.adminTitle": "Total Queue Joins",
   "queueJoinCounter.unavailable": "Live count unavailable",
+  "queueJoinCounter.live": "Live",
 };
 
 const zh: Record<keyof typeof en, string> = {
@@ -12,6 +13,7 @@ const zh: Record<keyof typeof en, string> = {
   "queueJoinCounter.since": "自 2026 年 9 月起",
   "queueJoinCounter.adminTitle": "累计排队加入次数",
   "queueJoinCounter.unavailable": "实时计数暂不可用",
+  "queueJoinCounter.live": "实时",
 };
 
 const ms: Record<keyof typeof en, string> = {
@@ -19,6 +21,7 @@ const ms: Record<keyof typeof en, string> = {
   "queueJoinCounter.since": "Sejak September 2026",
   "queueJoinCounter.adminTitle": "Jumlah Penyertaan Giliran",
   "queueJoinCounter.unavailable": "Bilangan langsung tidak tersedia",
+  "queueJoinCounter.live": "Langsung",
 };
 
 const ta: Record<keyof typeof en, string> = {
@@ -26,6 +29,7 @@ const ta: Record<keyof typeof en, string> = {
   "queueJoinCounter.since": "செப்டம்பர் 2026 முதல்",
   "queueJoinCounter.adminTitle": "மொத்த வரிசைச் சேர்க்கைகள்",
   "queueJoinCounter.unavailable": "நேரடி எண்ணிக்கை கிடைக்கவில்லை",
+  "queueJoinCounter.live": "நேரலை",
 };
 
 registerArticleTranslations({ en, zh, ms, ta });
