@@ -7,7 +7,7 @@
 - `src/components/QueueJoinCounter.tsx` on the homepage hero (`variant="hero"`)
 - the same component on `/analytics` (`variant="metric"`)
 
-No additional counter table, duplicate queue record, production database, or queue-integration change is included.
+No additional counter table, duplicate queue record, production database, or queue-integration change is included. No temporary users, authentication settings, admin permissions, or backend data are created or modified. Actual admin access and live backend aggregation are left for developer UAT after GitHub handover.
 
 ## Production API contract
 

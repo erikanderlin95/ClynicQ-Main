@@ -1,11 +1,12 @@
 # ClynicQ roadmap
 
 ## Cumulative queue join counter
-- [ ] Add a compact four-language homepage counter below the hero description.
-- [ ] Add the same shared count to the admin analytics dashboard.
-- [ ] Instrument confirmed joins without counting duplicates or changing queue integration.
-- [ ] Document the production aggregate API, privacy rules and UAT handover; keep mock data development-only.
-- [ ] Test counter rules and verify homepage/admin behavior without publishing.
+- [x] Add a compact four-language homepage counter below the hero description.
+- [x] Add the same shared count to the admin analytics dashboard.
+- [x] Instrument confirmed joins without counting duplicates or changing queue integration.
+- [x] Document the production aggregate API, privacy rules and UAT handover; keep mock data development-only.
+- [x] Leave actual admin and backend integration checks to the developer's UAT; create no test users and change no auth, permissions or backend data.
+- [x] Test counter rules and verify homepage behavior without publishing.
 
 ## Healthcare at Home
 - [x] Replace only the 24-hour entry section with two home healthcare cards.
